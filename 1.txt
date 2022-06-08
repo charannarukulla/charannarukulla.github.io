@@ -1,0 +1,21 @@
+%{
+int n=0;
+%}
+%%
+"if"|"else"|"while"|"for" { printf("\t keyword %s",yytext); }
+[a-zA-Z_][a-zA-Z_]* { printf("\t identifier %s",yytext); }
+"<"|"<="|">"|">="|"=="|"="|"+"|"-"|"*" { printf("\t operator %s",yytext);}
+[(){},;] { printf("\t separator %s",yytext);}
+[0-9]+ { printf("\t digits %s",yytext);}
+%%
+int main()
+{
+yylex();
+}
+int yywrap()
+return 1;
+}
+lex tok.l
+gcc lex.yy.c
+./a.out
+c=a+b;
